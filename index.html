@@ -13,60 +13,66 @@
     <script src="kaboom.js"></script>
     <script type="module">
         kaboom(); 
-        
-        loadSprite("bean", "sprites/bean.png");
 
-        const bean = add([ 
-            sprite("bean"),
-            pos(20, 60),
-            area(),
-            scale(0.5),  
+        loadSprite("space-invader", "sprites/space-invader.png");
+
+        const spaceInvader = add([ 
+            sprite("space-invader"),
+            pos(30, 60),
+            area(),  
             origin("center"),
             rotate(0),
         ]);
 
         const MOVE_SPEED = 200;
 
-        keyDown('right', () => {
-            bean.move(MOVE_SPEED,0);
-        })
+        // keyDown('right', () => {
+        //     bean.move(MOVE_SPEED,0);
+        // })
 
-        keyDown('left', () => {
-            bean.move(-MOVE_SPEED,0);
-        })
+        // keyDown('left', () => {
+        //     bean.move(-MOVE_SPEED,0);
+        // })
 
         // bean.onUpdate(() => {
         //     bean.angle -= 200 * dt()
         // })
 
-        loadSprite("ground", "sprites/ground.png")
-        loadSprite("enemy", "sprites/enemy.png");
+        loadSprite("wall", "sprites/wall.png")
 
         addLevel([
-          "     ",
-          "  @  ",
-          "     ",
-          "xxxxx",
-        ],{
-            width: 40,
-            height: 40,
-            "x" : () => [
-                sprite("ground"),
+          "! ^^^^^^^^^^^     &",
+          "! ^^^^^^^^^^^     &",
+          "! ^^^^^^^^^^^     &",
+          "!                 &",
+          "!                 &",
+          "!                 &",
+          "!                 &",
+          "!                 &",
+          "!                 &",
+          "!                 &",
+        ], {
+            width: 30,
+            height: 22,
+            "^" : () => [
+                sprite("space-invader"),
+                scale(0.5),
                 area(),
                 solid(),
             ],
-            "@" : () => [
-                sprite("enemy"),
-                scale(1.2),
-                body(),
-                area(), 
-                "dangerous"
+            "!" : () => [
+                sprite("wall"),
+                "left-wall",
+            ],
+            "&" : () => [
+                sprite("wall"),
+                "right-wall",
             ]
         })
 
-        bean.onCollide("dangerous", (dangerous) => {
-            destroy(bean)
-        })
+        // bean.onCollide("dangerous", (dangerous) => {
+        //     destroy(bean)
+        // })
         
         
     </script>
