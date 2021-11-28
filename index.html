@@ -15,6 +15,7 @@
         kaboom(); 
 
         loadSprite("space-invader", "sprites/space-invader.png");
+        loadSprite("space-ship", "sprites/space-ship.png");
 
         const spaceInvader = add([ 
             sprite("space-invader"),
@@ -24,21 +25,18 @@
             rotate(0),
         ]);
 
-        const MOVE_SPEED = 200;
-
-        // keyDown('right', () => {
-        //     bean.move(MOVE_SPEED,0);
-        // })
-
-        // keyDown('left', () => {
-        //     bean.move(-MOVE_SPEED,0);
-        // })
-
-        // bean.onUpdate(() => {
-        //     bean.angle -= 200 * dt()
-        // })
+        const spaceShip = add([ 
+            sprite("space-ship"),
+            pos(300, 235),
+            scale(0.5),
+            area(),  
+            origin("center"),
+            rotate(0),
+        ]);
 
         loadSprite("wall", "sprites/wall.png")
+
+        const MOVE_SPEED = 200;
 
         addLevel([
           "! ^^^^^^^^^^^     &",
@@ -56,7 +54,7 @@
             height: 22,
             "^" : () => [
                 sprite("space-invader"),
-                scale(0.5),
+                scale(0.3),
                 area(),
                 solid(),
             ],
@@ -69,6 +67,18 @@
                 "right-wall",
             ]
         })
+
+        keyDown('right', () => {
+            spaceShip.move(MOVE_SPEED,0);
+        })
+
+        keyDown('left', () => {
+            spaceShip.move(-MOVE_SPEED,0);
+        })
+
+        // bean.onUpdate(() => {
+        //     bean.angle -= 200 * dt()
+        // })
 
         // bean.onCollide("dangerous", (dangerous) => {
         //     destroy(bean)
