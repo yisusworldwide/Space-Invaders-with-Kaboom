@@ -96,9 +96,23 @@
             { time: TIME_LEFT },
         ])
 
+        const font = "sinko";
+
+        // const lose = drawText({
+        //     text: "you lose",
+        //     size: 48,
+        //     font: font,
+        //     width: 120,
+        //     pos: vec2(100, 200),
+        //     color: rgb(0, 0, 255),
+        // })
+
         timer.action(() => {
             timer.time -= dt();
             timer.next = timer.time.toFixed(2);
+            if (timer.time <= 0) {
+                go("lose", score.value)
+            }
         })
 
         // bean.onUpdate(() => {
