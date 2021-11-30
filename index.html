@@ -59,6 +59,7 @@
                 scale(0.3),
                 area(),
                 solid(),
+                "space-invader",
             ],
             "!" : () => [
                 sprite("wall"),
@@ -107,13 +108,13 @@
         //     color: rgb(0, 0, 255),
         // })
 
-        timer.action(() => {
-            timer.time -= dt();
-            timer.next = timer.time.toFixed(2);
-            if (timer.time <= 0) {
-                go("lose", score.value)
-            }
-        })
+        // timer.action(() => {
+        //     timer.time -= dt();
+        //     timer.next = timer.time.toFixed(2);
+        //     if (timer.time <= 0) {
+        //         go("lose", score.value)
+        //     }
+        // })
 
         // bean.onUpdate(() => {
         //     bean.angle -= 200 * dt()
@@ -122,6 +123,28 @@
         // bean.onCollide("dangerous", (dangerous) => {
         //     destroy(bean)
         // })
+
+        const INVADER_SPEED = 100;
+        let CURRENT_SPEED = INVADER_SPEED;
+        const LEVEL_DOWN = 100;
+
+        action("space-invader", (s) => {
+            s.move(CURRENT_SPEED, 0);
+        })
+
+        collides("space-invader", "right-wall", () => {
+            CURRENT_SPEED = -INVADER_SPEED
+            every("space-invader", (s) => {
+                s.move(0, LEVEL_DOWN)
+            })
+        })
+
+        collides("space-invader", "left-wall", () => {
+            CURRENT_SPEED = -INVADER_SPEED
+            every("space-invader", (s) => {
+                s.move(0, LEVEL_DOWN)
+            })
+        })
         
         
     </script>
