@@ -124,10 +124,6 @@
         //     bean.angle -= 200 * dt()
         // })
 
-        // bean.onCollide("dangerous", (dangerous) => {
-        //     destroy(bean)
-        // })
-
         const INVADER_SPEED = 100;
         let CURRENT_SPEED = INVADER_SPEED;
         const LEVEL_DOWN = 100;
@@ -137,18 +133,27 @@
         })
 
         spaceInvader.onCollide("right-wall", (rightWall) => {
-            destroy(spaceInvader)
+            // destroy(spaceInvader)
+            CURRENT_SPEED = -INVADER_SPEED
+            every("space-invader", (s) => {
+                s.move(0, LEVEL_DOWN)
+            })
         })
 
         // collides("space-invader", "right-wall", () => {
-        //     CURRENT_SPEED = -INVADER_SPEED
-        //     every("space-invader", (s) => {
-        //         s.move(0, LEVEL_DOWN)
-        //     })
+            // CURRENT_SPEED = -INVADER_SPEED
+            // every("space-invader", (s) => {
+            //     s.move(0, LEVEL_DOWN)
+            // })
         // })
 
         spaceInvader.onCollide("left-wall", (leftWall) => {
-            destroy(spaceInvader)
+            CURRENT_SPEED = -INVADER_SPEED
+            every("space-invader", (s) => {
+                s.move(0, LEVEL_DOWN)
+            })
+            // destroy(spaceInvader)
+
         })
 
         // collides("space-invader", "left-wall", () => {
