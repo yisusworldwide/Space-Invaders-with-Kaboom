@@ -63,10 +63,14 @@
             ],
             "!" : () => [
                 sprite("wall"),
+                area(),
+                solid(),
                 "left-wall",
             ],
             "&" : () => [
                 sprite("wall"),
+                area(),
+                solid(),
                 "right-wall",
             ]
         })
@@ -132,19 +136,27 @@
             s.move(CURRENT_SPEED, 0);
         })
 
-        collides("space-invader", "right-wall", () => {
-            CURRENT_SPEED = -INVADER_SPEED
-            every("space-invader", (s) => {
-                s.move(0, LEVEL_DOWN)
-            })
+        spaceInvader.onCollide("right-wall", (rightWall) => {
+            destroy(spaceInvader)
         })
 
-        collides("space-invader", "left-wall", () => {
-            CURRENT_SPEED = -INVADER_SPEED
-            every("space-invader", (s) => {
-                s.move(0, LEVEL_DOWN)
-            })
+        // collides("space-invader", "right-wall", () => {
+        //     CURRENT_SPEED = -INVADER_SPEED
+        //     every("space-invader", (s) => {
+        //         s.move(0, LEVEL_DOWN)
+        //     })
+        // })
+
+        spaceInvader.onCollide("left-wall", (leftWall) => {
+            destroy(spaceInvader)
         })
+
+        // collides("space-invader", "left-wall", () => {
+        //     CURRENT_SPEED = -INVADER_SPEED
+        //     every("space-invader", (s) => {
+        //         s.move(0, LEVEL_DOWN)
+        //     })
+        // })
         
         
     </script>
