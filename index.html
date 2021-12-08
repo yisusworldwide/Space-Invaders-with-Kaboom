@@ -158,6 +158,15 @@
         //     })
         // })
         
+        spaceInvader.overlaps("space-invader", () => {
+            go("lose", {score: score.value})
+        })
+
+        action("space_invader", (s) => {
+            if(s.pos.y >= (12 * 22)) {
+                go("lose", {score: score.value})
+            }
+        })
         
     </script>
 </body>
