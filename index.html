@@ -108,6 +108,8 @@
 
         const font = "sinko";
 
+        // POP-UP LETTERING WHEN GAME OVER
+
         // const lose = drawText({
         //     text: "you lose",
         //     size: 48,
@@ -117,6 +119,8 @@
         //     color: rgb(0, 0, 255),
         // })
 
+        // WHEN TIME'S UP YOU LOSE
+
         // timer.action(() => {
         //     timer.time -= dt();
         //     timer.next = timer.time.toFixed(2);
@@ -125,9 +129,7 @@
         //     }
         // })
 
-        // bean.onUpdate(() => {
-        //     bean.angle -= 200 * dt()
-        // })
+        // LEVEL DOWN WHEN COLLIDE WALLS
 
         const INVADER_SPEED = 100;
         let CURRENT_SPEED = INVADER_SPEED;
@@ -157,12 +159,14 @@
         //         s.move(0, LEVEL_DOWN)
         //     })
         // })
+
+        // IF SPACE INVADERS REACH SPACESHIP IT'S OVER
         
-        spaceInvader.overlaps("space-invader", () => {
+        spaceShip.overlaps("space-invader", () => {
             go("lose", {score: score.value})
         })
 
-        action("space_invader", (s) => {
+        action("space-invader", (s) => {
             if(s.pos.y >= (12 * 22)) {
                 go("lose", {score: score.value})
             }
