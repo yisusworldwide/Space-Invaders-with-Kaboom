@@ -37,6 +37,9 @@
         loadSprite("wall", "sprites/wall.png")
 
         const MOVE_SPEED = 200;
+        const INVADER_SPEED = 100;
+        let CURRENT_SPEED = INVADER_SPEED;
+        const LEVEL_DOWN = 100;
 
         layer(["obj", "ui"], "obj")
 
@@ -88,6 +91,22 @@
             spaceShip.move(-MOVE_SPEED,0);
         })
 
+        //SPAWN BULLET
+
+        function spawnBullet(p) {
+            add([
+                rect(6,18),
+                pos(p),
+                origin("center"),
+                color(0.5, 0.5, 1),
+                "bullet",
+            ])
+        }
+
+        keyPress('space', () => {
+            spawnBullet(player.pos.add(0,0))
+        })
+
         const score = add([
             text("Score: 0"),
             pos(50, 50),
@@ -125,15 +144,11 @@
         //     timer.time -= dt();
         //     timer.next = timer.time.toFixed(2);
         //     if (timer.time <= 0) {
-        //         go("lose", score.value)
+        //         go("lose", { score: score.value})
         //     }
         // })
 
         // LEVEL DOWN WHEN COLLIDE WALLS
-
-        const INVADER_SPEED = 100;
-        let CURRENT_SPEED = INVADER_SPEED;
-        const LEVEL_DOWN = 100;
 
         action("space-invader", (s) => {
             s.move(CURRENT_SPEED, 0);
@@ -171,7 +186,9 @@
                 go("lose", {score: score.value})
             }
         })
+
         
+
     </script>
 </body>
 
