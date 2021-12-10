@@ -177,7 +177,7 @@
 
         // IF SPACE INVADERS REACH SPACESHIP IT'S OVER
         
-        spaceShip.overlaps("space-invader", () => {
+        spaceShip.onCollide("space-invader", () => {
             go("lose", {score: score.value})
         })
 
