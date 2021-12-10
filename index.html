@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Yisusworldwide Game</title>
+    <title>Space Invaders</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -104,7 +104,24 @@
         }
 
         keyPress('space', () => {
-            spawnBullet(player.pos.add(0,0))
+            spawnBullet(spaceShip.pos.add(0,-50))
+        })
+
+        const BULLET_SPEED = 400;
+
+        action("bullet", (b) => {
+            b.move(0, -BULLET_SPEED)
+            if(b.po.y < 0) {
+                destroy(b)
+            }
+        })
+
+        collides("bullet", "space-invader", (b,s) => {
+            camShake(4),
+            destroy(b),
+            destroy(s),
+            score.value++
+            score.text = score.value
         })
 
         const score = add([
