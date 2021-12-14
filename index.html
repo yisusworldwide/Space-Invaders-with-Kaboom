@@ -13,10 +13,10 @@
     <script src="kaboom.js"></script>
     <script type="module">
         kaboom({
-            // width: 320,
+            width: 320,
             // height: 240,
             // font: "sinko",
-            // canvas: document.querySelector("#mycanvas"),
+            canvas: document.querySelector("#mycanvas"),
             background: [ 0, 0, 0, ],
         }); 
 
@@ -146,14 +146,12 @@
             { time: TIME_LEFT },
         ])
 
-        const font = "sinko";
-
         // POP-UP LETTERING WHEN GAME OVER
 
         // const lose = drawText({
         //     text: "you lose",
         //     size: 48,
-        //     font: font,
+        //     font: "sinko",
         //     width: 120,
         //     pos: vec2(100, 200),
         //     color: rgb(0, 0, 255),
